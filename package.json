@@ -9,12 +9,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "10.16.3",
-    "yarn": "1.19.0"
+    "node": "10.18.1",
+    "yarn": "1.21.1"
   },
   "dependencies": {
     "@rails/webpacker": "^4.0.2",
-    "bootstrap": "4.1.1",
+    "bootstrap": "4.3.1",
     "daterangepicker": "^3.0.5",
     "jquery": "^3.3.1",
     "jquery-mask-plugin": "^1.14.12",
