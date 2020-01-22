@@ -9,7 +9,7 @@ gem 'aws-sdk', '~> 3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-daterangepicker-rails'
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'carrierwave', '~> 1.0'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
