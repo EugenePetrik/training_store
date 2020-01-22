@@ -11,10 +11,9 @@ AllCops:
     - 'node_modules/**/*'
     - 'bin/**/*'
     - 'config/**/*'
-    - 'db/migrate/**/*'
-    - 'db/schema.rb'
-    - 'app/uploaders/**/*'
-    - 'app/forms/address_form.rb'
+    - 'db/**/*'
+    - 'app/**/*'
+    - 'sekrets/**/*'
   TargetRubyVersion: 2.6
 
 Layout/LineLength:
