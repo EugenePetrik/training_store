@@ -55,3 +55,26 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 end
+
+group :test do
+  # https://github.com/teamcapybara/capybara
+  gem 'capybara', '~> 3.30'
+  # https://github.com/mattheworiordan/capybara-screenshot
+  gem 'capybara-screenshot', '~> 1.0', '>= 1.0.24'
+  # https://github.com/DatabaseCleaner/database_cleaner
+  gem 'database_cleaner', '~> 1.7'
+  # https://github.com/thoughtbot/factory_bot_rails
+  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
+  # https://github.com/ffaker/ffaker
+  gem 'ffaker', '~> 2.13'
+  # https://github.com/colszowka/simplecov
+  gem 'simplecov', '~> 0.17.1'
+  # https://github.com/site-prism/site_prism
+  gem 'site_prism', '~> 3.4', '>= 3.4.1'
+  # https://github.com/rspec/rspec-rails
+  gem 'rspec-rails', '~> 3.9'
+  # https://github.com/rubocop-hq/rubocop-rspec
+  gem 'rubocop-rspec', '~> 1.37'
+  # https://rubygems.org/gems/webdrivers/versions/4.2.0
+  gem 'webdrivers', '~> 4.2'
+end
