@@ -22,8 +22,7 @@ Layout/LineLength:
     - 'spec/**/*'
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'ActiveAdmin.register']
-  Exclude:
+  ExcludedMethods: ['describe', 'context', 'it', 'ActiveAdmin.register']
 
 Metrics/MethodLength:
   Exclude:
@@ -63,4 +62,11 @@ RSpec/MessageChain:
   Enabled: false
 
 RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 40
+
+RSpec/DescribeClass:
   Enabled: false
