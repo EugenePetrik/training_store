@@ -19,7 +19,7 @@
         input_html: { autocomplete: "current-password" }, class: 'form-control'
       - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
         = link_to "Forgot your password?", new_password_path(resource_name), class: 'help-block in-gold-500'
-        = f.button :submit, 'Enter', class: 'btn btn-default mb-20'
+        = f.button :submit, 'Enter', class: 'btn btn-default mb-20 mt-200'
         %br/
     .form-group.checkbox.text-center.mb-30
       %label.checkbox-label
