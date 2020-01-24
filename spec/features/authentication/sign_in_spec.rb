@@ -28,6 +28,7 @@ RSpec.describe 'SignIn' do
 
       expect(home_page).to be_displayed
       expect(home_page.success_flash.text).to eq(success_message)
+      expect(home_page.user_email.text).to eq(user.email)
     end
   end
 

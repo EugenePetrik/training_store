@@ -10,6 +10,7 @@ class SignInPage < BasePage
 
   element :remember_me, '.checkbox-label'
   element :back_button, '.btn', text: /back to store/i
+  element :forgot_pass, 'a', text: /forgot your password?/i
 
   def login_with(options = {})
     email.set(options[:email])

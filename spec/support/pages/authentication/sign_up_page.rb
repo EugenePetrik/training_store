@@ -3,7 +3,7 @@ class SignUpPage < BasePage
 
   element :fb_icon, 'a.general-login-icon'
   element :sign_up_title, 'h3.general-login-title', text: 'Sign up'
-  
+
   element :email, '#user_email'
   element :password, '#user_password'
   element :password_confirmation, '#user_password_confirmation'

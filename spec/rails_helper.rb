@@ -25,7 +25,6 @@ require 'rspec/rails'
 # Load site prism page objects
 require File.expand_path('support/pages/base_page', __dir__)
 
-
 # Load modules under the spec/support directory
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].sort.each { |file| require file }
 
