@@ -1,6 +1,9 @@
 class HomePage < BasePage
   set_url '/'
 
+  element :sign_up_link, 'a[href="/users/sign_up"]'
+  element :login_link, 'a[href="/users/sign_in"]'
+
   element :user_email, '.user_email > a'
 
   element :filters_title, '#filters h1'
@@ -16,15 +19,14 @@ class HomePage < BasePage
 
   elements :book_title, 'div p.title'
 
+  delegate :text, to: :user_email, prefix: true
   delegate :text, to: :filters_title, prefix: true
   delegate :text, to: :catalog_title, prefix: true
   delegate :text, to: :no_books_title, prefix: true
   delegate :text, to: :category_name, prefix: true
   delegate :text, to: :category_count, prefix: true
 
-  # def filters_title_text
-  #   filters_title.text
-  # end
+  delegate :size, to: :book_title, prefix: true
 
   def no_books_image_source
     no_books_image[:src]

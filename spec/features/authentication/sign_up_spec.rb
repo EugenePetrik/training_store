@@ -16,6 +16,7 @@ RSpec.describe 'SignUp' do
   let(:success_message) { 'Welcome! You have signed up successfully.' }
   let(:error_email_blank_invalid) { "Email can't be blank and Email is invalid" }
   let(:error_email_invalid) { 'Email is invalid' }
+  let(:error_email_taken) { 'Email has already been taken' }
   let(:error_pass_blank) { "Password can't be blank" }
   let(:error_pass_less_chars) { '6 characters minimum' }
   let(:error_pass_short) { 'Password is too short (minimum is 6 characters)' }
@@ -34,7 +35,22 @@ RSpec.describe 'SignUp' do
       sign_up_page.sign_up_with(params_signup_data)
 
       expect(home_page).to be_displayed
-      expect(home_page.success_flash.text).to eq(success_message)
+      expect(home_page.success_flash_text).to eq(success_message)
+    end
+  end
+
+  context 'with existing email in the system' do
+    let(:user) { create(:user) }
+
+    it 'raises an error' do
+      params_signup_data[:email] = user.email
+      params_signup_data[:password] = user.password
+      params_signup_data[:password_confirmation] = user.password
+
+      sign_up_page.sign_up_with(params_signup_data)
+
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.email_error_text).to eq(error_email_taken)
     end
   end
 
@@ -46,9 +62,10 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.email_error.text).to eq(error_email_blank_invalid)
-      expect(sign_up_page.pass_error.text).to eq(error_pass_blank)
-      expect(sign_up_page.pass_less_6_chars_error.text).to eq(error_pass_less_chars)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.email_error_text).to eq(error_email_blank_invalid)
+      expect(sign_up_page.pass_error_text).to eq(error_pass_blank)
+      expect(sign_up_page.pass_less_6_chars_error_text).to eq(error_pass_less_chars)
     end
   end
 
@@ -58,7 +75,8 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.email_error.text).to eq(error_email_invalid)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.email_error_text).to eq(error_email_invalid)
     end
   end
 
@@ -68,7 +86,8 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.email_error.text).to eq(error_email_blank_invalid)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.email_error_text).to eq(error_email_blank_invalid)
     end
   end
 
@@ -78,9 +97,10 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.pass_error.text).to eq(error_pass_blank)
-      expect(sign_up_page.pass_less_6_chars_error.text).to eq(error_pass_less_chars)
-      expect(sign_up_page.pass_confirm_error.text).to eq(error_pass_confirm_match)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.pass_error_text).to eq(error_pass_blank)
+      expect(sign_up_page.pass_less_6_chars_error_text).to eq(error_pass_less_chars)
+      expect(sign_up_page.pass_confirm_error_text).to eq(error_pass_confirm_match)
     end
   end
 
@@ -91,8 +111,9 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.pass_error.text).to eq(error_pass_short)
-      expect(sign_up_page.pass_less_6_chars_error.text).to eq(error_pass_less_chars)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.pass_error_text).to eq(error_pass_short)
+      expect(sign_up_page.pass_less_6_chars_error_text).to eq(error_pass_less_chars)
     end
   end
 
@@ -102,7 +123,8 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.pass_confirm_error.text).to eq(error_pass_confirm_match)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.pass_confirm_error_text).to eq(error_pass_confirm_match)
     end
   end
 
@@ -113,7 +135,8 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(sign_up_page.pass_confirm_error.text).to eq(error_pass_confirm_match)
+      expect(sign_up_page).to be_displayed
+      expect(sign_up_page.pass_confirm_error_text).to eq(error_pass_confirm_match)
     end
   end
 end

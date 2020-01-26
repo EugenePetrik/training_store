@@ -1,4 +1,4 @@
-RSpec.describe 'Home page' do
+RSpec.describe 'Home' do
   let(:home_page) { HomePage.new }
 
   context 'without books' do
@@ -37,7 +37,7 @@ RSpec.describe 'Home page' do
 
       home_page.has_no_view_more_button?
 
-      expect(home_page.book_title.size).to eq(13)
+      expect(home_page.book_title_size).to eq(13)
       expect(home_page.books_titles).to match_array([
                                                       mob_books[0].title, mob_books[1].title,
                                                       mob_books[2].title, mob_books[3].title,
