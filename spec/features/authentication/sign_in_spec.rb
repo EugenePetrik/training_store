@@ -16,7 +16,7 @@ RSpec.describe 'SignIn' do
 
   before { sign_in_page.load }
 
-  context 'when open page', :smoke do
+  context 'when open page' do
     it { expect(sign_in_page).to be_displayed }
     it { expect(sign_in_page).to be_all_there }
     it { expect(sign_in_page.title).to eq('Bookstore') }
