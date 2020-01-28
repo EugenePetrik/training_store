@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../config/environment', __dir__)
@@ -21,6 +22,9 @@ require 'rspec/rails'
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
+
+# Load site prism page objects
+require File.expand_path('support/pages/base_page', __dir__)
 
 # Load modules under the spec/support directory
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].sort.each { |file| require file }

@@ -1,21 +1,24 @@
-RSpec.describe 'Home page' do
+RSpec.describe 'Home' do
+  let(:home_page) { HomePage.new }
+
   context 'without books' do
     before { visit '/' }
 
-    it 'shows no books image' do
-      expect(page).to have_content('Catalog')
-      expect(page).to have_content('Can`t find books')
+    it 'shows no books title' do
+      expect(home_page.filters_title_text).to include('Filters')
+      expect(home_page.catalog_title_text).to include('Catalog')
+      expect(home_page.no_books_title_text).to include('Can`t find books')
+    end
 
+    it 'shows no books image' do
       file_src = '/assets/fallback/no_books-0a35a1b14b85c223a9d0c8bf0ea4cd29588f68cb35744963bb6c12d365118919.jpg'
-      expect(find('#no_books img')[:src]).to include(file_src)
+      expect(home_page.no_books_image_source).to include(file_src)
     end
 
     it 'shows ALL link with 0 count' do
-      within(:xpath, '(//ul[contains(@class, "list-inline")]/li)[1]') do
-        # expect(page).to have_xpath('.//a', text: 'All')
-        # expect(page).to have_xpath('.//span', text: '0')
-        expect(find(:xpath, './/a').text).to include('All')
-        expect(find(:xpath, './/span').text).to eq('0')
+      home_page.get_category_name_and_count_by_index(1) do
+        expect(home_page.category_name_text).to include('All')
+        expect(home_page.category_count_text).to include('0')
       end
     end
   end
@@ -30,42 +33,41 @@ RSpec.describe 'Home page' do
     before { visit '/' }
 
     it 'shows all books' do
-      find('#view_more').click
+      home_page.click_on_view_more_button
 
-      expect(page).not_to have_css('#view_more')
+      home_page.has_no_view_more_button?
 
-      all_books = all(:css, 'div p.title')
-
-      expect(all_books.size).to eq(13)
-      expect(all_books.map(&:text)).to match_array([
-                                                     mob_books[0].title, mob_books[1].title,
-                                                     mob_books[2].title, mob_books[3].title,
-                                                     mob_books[4].title, mob_books[5].title,
-                                                     mob_books[6].title,
-                                                     web_books[0].title, web_books[1].title,
-                                                     web_books[2].title, web_books[3].title,
-                                                     web_books[4].title, web_books[5].title,
-                                                   ])
+      expect(home_page.book_title_size).to eq(13)
+      expect(home_page.books_titles).to match_array([
+                                                      mob_books[0].title, mob_books[1].title,
+                                                      mob_books[2].title, mob_books[3].title,
+                                                      mob_books[4].title, mob_books[5].title,
+                                                      mob_books[6].title,
+                                                      web_books[0].title, web_books[1].title,
+                                                      web_books[2].title, web_books[3].title,
+                                                      web_books[4].title, web_books[5].title,
+                                                    ])
     end
 
     it 'shows pagination when more than 12 books created' do
-      expect(page).to have_css('#view_more')
+      # home_page.has_view_more_button?
+      expect(home_page).to have_view_more_button
     end
 
     it 'shows correct category name and books count' do
-      within(:xpath, '(//ul[contains(@class, "list-inline")]/li)[1]') do
-        expect(find(:xpath, './/a').text).to include('All')
-        expect(find(:xpath, './/span').text).to eq('13')
+      home_page.get_category_name_and_count_by_index(1) do
+        expect(home_page.category_name_text).to include('All')
+        expect(home_page.category_count_text).to include('13')
       end
 
-      within(:xpath, '(//ul[contains(@class, "list-inline")]/li)[2]') do
-        expect(find(:xpath, './/a').text).to include('Mobile development')
-        expect(find(:xpath, './/span').text).to eq('7')
+      home_page.get_category_name_and_count_by_index(2) do
+        expect(home_page.category_name_text).to include('Mobile development')
+        expect(home_page.category_count_text).to include('7')
       end
 
-      within(:xpath, '(//ul[contains(@class, "list-inline")]/li)[3]') do
-        expect(find(:xpath, './/a').text).to include('Web development')
-        expect(find(:xpath, './/span').text).to eq('6')
+      home_page.get_category_name_and_count_by_index(3) do
+        expect(home_page.category_name_text).to include('Web development')
+        expect(home_page.category_count_text).to include('6')
       end
     end
   end

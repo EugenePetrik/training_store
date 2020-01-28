@@ -1,0 +1,20 @@
+class SignInPage < BasePage
+  set_url '/users/sign_in'
+
+  element :fb_icon, 'a.general-login-icon'
+  element :sign_up_title, 'h3.general-login-title', text: 'Log In'
+
+  element :email, '#user_email'
+  element :password, '#user_password'
+  element :login_button, '[name="commit"]'
+
+  element :remember_me, '.checkbox-label'
+  element :back_button, '.btn', text: /back to store/i
+  element :forgot_pass, 'a', text: /forgot your password?/i
+
+  def login_with(options = {})
+    email.set(options[:email]) unless options[:email].nil?
+    password.set(options[:password]) unless options[:password].nil?
+    login_button.click
+  end
+end

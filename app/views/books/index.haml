@@ -50,13 +50,13 @@
         .dropdown.width-240
           = render partial: 'books/partials/dropdown_filters', locals: { filter: @current_filter, category: @category }
       %ul.list-inline.pt-10.mb-25.mr-240
-        %li.mr-35
+        %li.mr-35.category_info
           = link_to books_path, class: 'filter-link' do
             = t(:'catalog.all_categories')
             %span.badge.general-badge
               = all_books_quantity
         - categories.each do |category|
-          %li.mr-35
+          %li.mr-35.category_info
             = link_to books_path(category: category), class: 'filter-link' do
               = category.title
               %span.badge.general-badge
