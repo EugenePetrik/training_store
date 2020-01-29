@@ -1,4 +1,4 @@
-.col-xs-6.col-sm-3.height-600
+.col-xs-6.col-sm-3.height-600.book_section
   .general-thumb-wrap
     .thumbnail.general-thumbnail
       = image_tag( book_cover(book), alt: 'design-book', class: 'img-shadow general-thumbnail-img')
@@ -11,8 +11,8 @@
   .general-thumb-info
     %p.title
       = book.title
-    %p.font-16.in-gold-500
+    %p.font-16.in-gold-500.price
       = t(:'book.price', price: book.price)
     %span.divider-sm
-    %p.lead.small
+    %p.lead.small.author
       = book.decorate.authors_all

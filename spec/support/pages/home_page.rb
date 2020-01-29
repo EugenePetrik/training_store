@@ -1,3 +1,5 @@
+require_relative 'sections/book_section'
+
 class HomePage < BasePage
   set_url '/'
 
@@ -19,7 +21,7 @@ class HomePage < BasePage
 
   element :view_more_button, '#view_more'
 
-  elements :book_title, 'div p.title'
+  sections :books, ::BookSection, 'div.book_section'
 
   def no_books_image_source
     no_books_image[:src]
@@ -35,8 +37,8 @@ class HomePage < BasePage
     view_more_button.click
   end
 
-  def books_titles
-    book_title.map(&:text)
+  def book_titles
+    books.map(&:title).map(&:text)
   end
 
   def user_log_out
