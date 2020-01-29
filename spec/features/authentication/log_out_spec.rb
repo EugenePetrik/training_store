@@ -15,5 +15,8 @@ RSpec.describe 'LogOut' do
 
     expect(home_page).to be_displayed
     expect(home_page.success_flash.text).to eq(success_message)
+    expect(home_page).to have_no_user_email
+    expect(home_page).to have_sign_up_link
+    expect(home_page).to have_login_link
   end
 end
