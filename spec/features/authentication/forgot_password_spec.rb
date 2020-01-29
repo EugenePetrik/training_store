@@ -5,6 +5,9 @@ RSpec.describe 'ForgotPassword' do
   let(:user) { create(:user) }
 
   let(:success_message) { 'You will receive an email with instructions on how to reset your password in a few minutes.' }
+  let(:error_message) { 'Please review the problems below:' }
+  let(:error_email_blank) { "Email can't be blank" }
+  let(:error_email_not_found) { "Email not found" }
 
   before { forgot_pass_page.load }
 
@@ -19,7 +22,7 @@ RSpec.describe 'ForgotPassword' do
       forgot_pass_page.reset_password_with(user.email)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.success_flash_text).to eq(success_message)
+      expect(sign_in_page.success_flash.text).to eq(success_message)
     end
   end
 
@@ -27,8 +30,51 @@ RSpec.describe 'ForgotPassword' do
     it 'user receives email' do
       forgot_pass_page.reset_password_with(user.email.upcase)
 
-      expect(home_page).to be_displayed
-      expect(home_page.success_flash_text).to eq(success_message)
+      expect(sign_in_page).to be_displayed
+      expect(sign_in_page.success_flash.text).to eq(success_message)
+    end
+  end
+
+  context 'with spaces before email' do
+    it 'user receives email' do
+      email = "   #{user.email.upcase}   "
+
+      forgot_pass_page.reset_password_with(email)
+
+      expect(sign_in_page).to be_displayed
+      expect(sign_in_page.success_flash.text).to eq(success_message)
+    end
+  end
+
+  context 'with empty email' do
+    it 'raises an error' do
+      forgot_pass_page.reset_password_with('')
+
+      expect(current_url).to end_with('/users/password')
+      expect(forgot_pass_page.error_flash.text).to eq(error_message)
+      expect(forgot_pass_page.email_error.text).to eq(error_email_blank)
+    end
+  end
+
+  context 'with invalid email format' do
+    it 'raises an error' do
+      forgot_pass_page.reset_password_with('testexample.com')
+
+      expect(current_url).to end_with('/users/password')
+      expect(forgot_pass_page.error_flash.text).to eq(error_message)
+      expect(forgot_pass_page.email_error.text).to eq(error_email_not_found)
+    end
+  end
+
+  context 'with nonexistent email' do
+    it 'raises an error' do
+      email = "user_#{user.email.upcase}"
+
+      forgot_pass_page.reset_password_with(email)
+
+      expect(current_url).to end_with('/users/password')
+      expect(forgot_pass_page.error_flash.text).to eq(error_message)
+      expect(forgot_pass_page.email_error.text).to eq(error_email_not_found)
     end
   end
 end
