@@ -5,9 +5,9 @@ RSpec.describe 'Home' do
     before { visit '/' }
 
     it 'shows no books title' do
-      expect(home_page.filters_title_text).to include('Filters')
-      expect(home_page.catalog_title_text).to include('Catalog')
-      expect(home_page.no_books_title_text).to include('Can`t find books')
+      expect(home_page.filters_title.text).to include('Filters')
+      expect(home_page.catalog_title.text).to include('Catalog')
+      expect(home_page.no_books_title.text).to include('Can`t find books')
     end
 
     it 'shows no books image' do
@@ -17,8 +17,8 @@ RSpec.describe 'Home' do
 
     it 'shows ALL link with 0 count' do
       home_page.get_category_name_and_count_by_index(1) do
-        expect(home_page.category_name_text).to include('All')
-        expect(home_page.category_count_text).to include('0')
+        expect(home_page.category_name.text).to include('All')
+        expect(home_page.category_count.text).to include('0')
       end
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe 'Home' do
 
       home_page.has_no_view_more_button?
 
-      expect(home_page.book_title_size).to eq(13)
+      expect(home_page.book_title.size).to eq(13)
       expect(home_page.books_titles).to match_array([
                                                       mob_books[0].title, mob_books[1].title,
                                                       mob_books[2].title, mob_books[3].title,
@@ -56,18 +56,18 @@ RSpec.describe 'Home' do
 
     it 'shows correct category name and books count' do
       home_page.get_category_name_and_count_by_index(1) do
-        expect(home_page.category_name_text).to include('All')
-        expect(home_page.category_count_text).to include('13')
+        expect(home_page.category_name.text).to include('All')
+        expect(home_page.category_count.text).to include('13')
       end
 
       home_page.get_category_name_and_count_by_index(2) do
-        expect(home_page.category_name_text).to include('Mobile development')
-        expect(home_page.category_count_text).to include('7')
+        expect(home_page.category_name.text).to include('Mobile development')
+        expect(home_page.category_count.text).to include('7')
       end
 
       home_page.get_category_name_and_count_by_index(3) do
-        expect(home_page.category_name_text).to include('Web development')
-        expect(home_page.category_count_text).to include('6')
+        expect(home_page.category_name.text).to include('Web development')
+        expect(home_page.category_count.text).to include('6')
       end
     end
   end

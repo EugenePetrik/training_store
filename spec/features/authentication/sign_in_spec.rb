@@ -27,8 +27,8 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(home_page).to be_displayed
-      expect(home_page.success_flash_text).to eq(success_message)
-      expect(home_page.user_email_text).to eq(user.email)
+      expect(home_page.success_flash.text).to eq(success_message)
+      expect(home_page.user_email.text).to eq(user.email)
       expect(home_page).to have_no_sign_up_link
       expect(home_page).to have_no_login_link
     end
@@ -41,7 +41,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(home_page).to be_displayed
-      expect(home_page.success_flash_text).to eq(success_message)
+      expect(home_page.success_flash.text).to eq(success_message)
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
@@ -74,7 +74,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
@@ -96,7 +96,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
@@ -108,7 +108,7 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 end

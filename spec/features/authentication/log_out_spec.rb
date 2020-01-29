@@ -14,6 +14,6 @@ RSpec.describe 'LogOut' do
     home_page.user_log_out
 
     expect(home_page).to be_displayed
-    expect(home_page.success_flash_text).to eq(success_message)
+    expect(home_page.success_flash.text).to eq(success_message)
   end
 end

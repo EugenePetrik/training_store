@@ -21,15 +21,6 @@ class HomePage < BasePage
 
   elements :book_title, 'div p.title'
 
-  delegate :text, to: :user_email, prefix: true
-  delegate :text, to: :filters_title, prefix: true
-  delegate :text, to: :catalog_title, prefix: true
-  delegate :text, to: :no_books_title, prefix: true
-  delegate :text, to: :category_name, prefix: true
-  delegate :text, to: :category_count, prefix: true
-
-  delegate :size, to: :book_title, prefix: true
-
   def no_books_image_source
     no_books_image[:src]
   end
