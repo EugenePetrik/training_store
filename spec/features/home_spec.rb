@@ -39,14 +39,14 @@ RSpec.describe 'Home' do
 
       expect(home_page).to have_books(count: 13)
       expect(home_page.book_titles).to match_array([
-                                                      mob_books[0].title, mob_books[1].title,
-                                                      mob_books[2].title, mob_books[3].title,
-                                                      mob_books[4].title, mob_books[5].title,
-                                                      mob_books[6].title,
-                                                      web_books[0].title, web_books[1].title,
-                                                      web_books[2].title, web_books[3].title,
-                                                      web_books[4].title, web_books[5].title,
-                                                    ])
+                                                     mob_books[0].title, mob_books[1].title,
+                                                     mob_books[2].title, mob_books[3].title,
+                                                     mob_books[4].title, mob_books[5].title,
+                                                     mob_books[6].title,
+                                                     web_books[0].title, web_books[1].title,
+                                                     web_books[2].title, web_books[3].title,
+                                                     web_books[4].title, web_books[5].title,
+                                                   ])
     end
 
     it 'shows pagination when more than 12 books created' do

@@ -18,13 +18,43 @@ class BillingSection < SitePrism::Section
   element :phone_error, '#billing_address_phone+.invalid-feedback'
 
   def fill_in_billing_address_with(options = {})
-    first_name.set(options[:first_name]) unless options[:first_name].nil?
-    last_name.set(options[:last_name]) unless options[:last_name].nil?
-    address.set(options[:address]) unless options[:address].nil?
-    city.set(options[:city]) unless options[:city].nil?
-    zip.set(options[:zip]) unless options[:zip].nil?
-    country.select(options[:country]) unless options[:country].nil?
-    phone.set(options[:phone]) unless options[:phone].nil?
+    fill_in_first_name(options[:first_name])
+    fill_in_last_name(options[:last_name])
+    fill_in_address(options[:address])
+    fill_in_city(options[:city])
+    fill_in_zip(options[:zip])
+    select_country(options[:country])
+    fill_in_phone(options[:phone])
     save_button.click
+  end
+
+  private
+
+  def fill_in_first_name(first_name)
+    self.first_name.set(first_name)
+  end
+
+  def fill_in_last_name(last_name)
+    self.last_name.set(last_name)
+  end
+
+  def fill_in_address(address)
+    self.address.set(address)
+  end
+
+  def fill_in_city(city)
+    self.city.set(city)
+  end
+
+  def fill_in_zip(zip)
+    self.zip.set(zip)
+  end
+
+  def select_country(country)
+    self.country.select(country)
+  end
+
+  def fill_in_phone(phone)
+    self.phone.set(phone)
   end
 end

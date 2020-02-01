@@ -13,8 +13,8 @@ class SignInPage < BasePage
   element :forgot_pass, 'a', text: /forgot your password?/i
 
   def login_with(options = {})
-    email.set(options[:email]) unless options[:email].nil?
-    password.set(options[:password]) unless options[:password].nil?
+    email.set(options[:email])
+    password.set(options[:password])
     login_button.click
   end
 end

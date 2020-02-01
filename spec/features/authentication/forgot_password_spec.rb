@@ -7,7 +7,7 @@ RSpec.describe 'ForgotPassword' do
   let(:success_message) { 'You will receive an email with instructions on how to reset your password in a few minutes.' }
   let(:error_message) { 'Please review the problems below:' }
   let(:error_email_blank) { "Email can't be blank" }
-  let(:error_email_not_found) { "Email not found" }
+  let(:error_email_not_found) { 'Email not found' }
 
   before { forgot_pass_page.load }
 

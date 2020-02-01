@@ -29,7 +29,7 @@ class HomePage < BasePage
 
   def get_category_name_and_count_by_index(index)
     within(:xpath, "(//ul/li[contains(@class, 'category_info')])[#{index}]") do
-      block_given? ? yield : fail('There are no parameters for spec')
+      block_given? ? yield : raise('There are no parameters for spec')
     end
   end
 

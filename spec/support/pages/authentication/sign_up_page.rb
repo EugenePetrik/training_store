@@ -18,9 +18,9 @@ class SignUpPage < BasePage
   element :pass_confirm_error, '[for="user_password_confirmation"]+.invalid-feedback'
 
   def sign_up_with(options = {})
-    email.set(options[:email]) unless options[:email].nil?
-    password.set(options[:password]) unless options[:password].nil?
-    password_confirmation.set(options[:password_confirmation]) unless options[:password_confirmation].nil?
+    email.set(options[:email])
+    password.set(options[:password])
+    password_confirmation.set(options[:password_confirmation])
     sign_up_button.click
   end
 end

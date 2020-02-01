@@ -6,10 +6,10 @@ RSpec.describe 'ShippingAddress' do
   let(:last_name) { FFaker::Name.last_name }
   let(:address) { FFaker::AddressUS.street_name }
   let(:city) { FFaker::AddressUS.city }
-  let(:zip) { rand(1..100000).to_s }
-  let(:country) { ['Ukraine', 'Germane', 'USA', 'UK'].sample }
-  let(:phone) { (FFaker::PhoneNumberUA.international_mobile_phone_number).gsub!(/[\s-]/, '') }
-  let(:special_chars) { ['!', '@', '#', '$', '%', '^', '&', '*', '~'].sample(rand(1..5)).join() }
+  let(:zip) { rand(1..100_000).to_s }
+  let(:country) { %w[Ukraine Germane USA UK].sample }
+  let(:phone) { FFaker::PhoneNumberUA.international_mobile_phone_number.gsub!(/[\s-]/, '') }
+  let(:special_chars) { %w[! @ # $ % ^ & * ~].sample(rand(1..5)).join }
 
   let(:params_billing_address) do
     {
@@ -19,7 +19,7 @@ RSpec.describe 'ShippingAddress' do
       city: city,
       zip: zip,
       country: country,
-      phone: phone,
+      phone: phone
     }
   end
 
@@ -48,7 +48,7 @@ RSpec.describe 'ShippingAddress' do
       settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
 
       expect(settings_page).to be_displayed
-      
+
       settings_page.billing_address do |billing|
         expect(billing.first_name.value).to eq(first_name)
         expect(billing.last_name.value).to eq(last_name)
@@ -83,7 +83,7 @@ RSpec.describe 'ShippingAddress' do
 
   context 'with numbers in first name' do
     it 'raises an error' do
-      params_billing_address[:first_name] = rand(10000)
+      params_billing_address[:first_name] = rand(10_000)
       settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
 
       expect(settings_page).to be_displayed
@@ -123,7 +123,7 @@ RSpec.describe 'ShippingAddress' do
 
   context 'with numbers in last name' do
     it 'raises an error' do
-      params_billing_address[:last_name] = rand(10000)
+      params_billing_address[:last_name] = rand(10_000)
       settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
 
       expect(settings_page).to be_displayed
@@ -203,7 +203,7 @@ RSpec.describe 'ShippingAddress' do
 
   context 'with numbers in city' do
     it 'raises an error' do
-      params_billing_address[:city] = rand(10000)
+      params_billing_address[:city] = rand(10_000)
       settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
 
       expect(settings_page).to be_displayed
@@ -223,7 +223,7 @@ RSpec.describe 'ShippingAddress' do
 
   context 'with too long zip code' do
     it 'raises an error' do
-      params_billing_address[:zip] = rand(1000000..100000000)
+      params_billing_address[:zip] = rand(1_000_000..100_000_000)
       settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
 
       expect(settings_page).to be_displayed
@@ -293,7 +293,7 @@ RSpec.describe 'ShippingAddress' do
 
   context 'with invalid phone number format' do
     it 'raises an error' do
-      params_billing_address[:phone] = rand(100000000)
+      params_billing_address[:phone] = rand(100_000_000)
       settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
 
       expect(settings_page).to be_displayed
