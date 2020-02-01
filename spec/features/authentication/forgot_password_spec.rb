@@ -50,7 +50,7 @@ RSpec.describe 'ForgotPassword' do
     it 'raises an error' do
       forgot_pass_page.reset_password_with('')
 
-      expect(current_url).to end_with('/users/password')
+      expect(forgot_pass_page.current_url).to end_with('/users/password')
       expect(forgot_pass_page.error_flash.text).to eq(error_message)
       expect(forgot_pass_page.email_error.text).to eq(error_email_blank)
     end
@@ -60,7 +60,7 @@ RSpec.describe 'ForgotPassword' do
     it 'raises an error' do
       forgot_pass_page.reset_password_with('testexample.com')
 
-      expect(current_url).to end_with('/users/password')
+      expect(forgot_pass_page.current_url).to end_with('/users/password')
       expect(forgot_pass_page.error_flash.text).to eq(error_message)
       expect(forgot_pass_page.email_error.text).to eq(error_email_not_found)
     end
@@ -72,7 +72,7 @@ RSpec.describe 'ForgotPassword' do
 
       forgot_pass_page.reset_password_with(email)
 
-      expect(current_url).to end_with('/users/password')
+      expect(forgot_pass_page.current_url).to end_with('/users/password')
       expect(forgot_pass_page.error_flash.text).to eq(error_message)
       expect(forgot_pass_page.email_error.text).to eq(error_email_not_found)
     end

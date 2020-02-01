@@ -1,4 +1,4 @@
-require_relative 'sections/book_section'
+require_relative '../sections/book_section'
 
 class HomePage < BasePage
   set_url '/'
@@ -29,7 +29,7 @@ class HomePage < BasePage
 
   def get_category_name_and_count_by_index(index)
     within(:xpath, "(//ul/li[contains(@class, 'category_info')])[#{index}]") do
-      yield
+      block_given? ? yield : fail('There are no parameters for spec')
     end
   end
 

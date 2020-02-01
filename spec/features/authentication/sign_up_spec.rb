@@ -49,7 +49,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.email_error.text).to eq(error_email_taken)
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.email_error.text).to eq(error_email_blank_invalid)
       expect(sign_up_page.pass_error.text).to eq(error_pass_blank)
       expect(sign_up_page.pass_less_6_chars_error.text).to eq(error_pass_less_chars)
@@ -75,7 +75,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.email_error.text).to eq(error_email_invalid)
     end
   end
@@ -86,7 +86,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.email_error.text).to eq(error_email_blank_invalid)
     end
   end
@@ -97,7 +97,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.pass_error.text).to eq(error_pass_blank)
       expect(sign_up_page.pass_less_6_chars_error.text).to eq(error_pass_less_chars)
       expect(sign_up_page.pass_confirm_error.text).to eq(error_pass_confirm_match)
@@ -111,7 +111,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.pass_error.text).to eq(error_pass_short)
       expect(sign_up_page.pass_less_6_chars_error.text).to eq(error_pass_less_chars)
     end
@@ -123,7 +123,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.pass_confirm_error.text).to eq(error_pass_confirm_match)
     end
   end
@@ -135,7 +135,7 @@ RSpec.describe 'SignUp' do
 
       sign_up_page.sign_up_with(params_signup_data)
 
-      expect(current_url).to end_with('/users')
+      expect(sign_up_page.current_url).to end_with('/users')
       expect(sign_up_page.pass_confirm_error.text).to eq(error_pass_confirm_match)
     end
   end
