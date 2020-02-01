@@ -36,7 +36,7 @@
             %h3.general-subtitle.mt-0
               =t('settings.shipping_address')
       .row
-        .col-md-5.mb-40
+        .col-md-5.mb-40.billing_address_section
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0
               =t('settings.billing_address')
@@ -45,7 +45,7 @@
             label_html: { class: 'control-label input-label' } }, validate: true do |billing|
             = render partial: 'address/form_address', locals: { f: billing, type: 'billing_address' }
             = billing.button :submit, t('settings.save'), wrapper_html: { class: 'text-center general-text-align'}, input_html: { class: 'btn btn-default' }
-        .col-md-5.col-md-offset-1.mb-25
+        .col-md-5.col-md-offset-1.mb-25.shipping_address_section
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0
               =t('settings.shipping_address')

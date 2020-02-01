@@ -153,15 +153,15 @@ en:
     phone: 'Phone must be format +38002353535'
     zip: 'Zip code must be format 49000'
     address: 'Address must be format `Bojenko 100, 23`'
-    fields: 'Can`t be blank'
+    fields: "can't be blank"
     card_namber: 'Please enter a valid credit card number'
     card_cvv: 'Must be number from 3 to 4 digit'
     card_name: 'Please enter enter name using words in upper and lowercase'
     expiry_date: "Expire date should be in format like '00/00'"
     wrong_zip_length: 'Zip is too long (maximum is 5 characters)'
-    empty_last_name: "Last name can't be blank and Last name Can`t be blank"
-    empty_first_name: "First name can't be blank and First name Can`t be blank"
-    epmty_city: "City can't be blank and City Can`t be blank"
+    empty_last_name: "Last name can't be blank and Last name can't be blank"
+    empty_first_name: "First name can't be blank and First name can't be blank"
+    epmty_city: "City can't be blank and City can't be blank"
     empty_country: "Country can't be blank"
     empty_address: "Address can't be blank and Address is too short (minimum is 5 characters)"
     epmty_phone: "Phone can't be blank and Phone Phone must be format +38002353535"
@@ -227,7 +227,7 @@ en:
       name: 'Name on Card'
       card_date: 'MM / YY'
       cvv: 'CVV'
-      error_field_can_not_be_empty: "can't be blank"
+      error_field_can_not_be_empty: "Can't be blank"
       error_cvv: 'is too long (maximum is 4 characters)'
       error_expiry_date: 'Expiry date should be from working card'
     confirm:
