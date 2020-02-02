@@ -1,4 +1,4 @@
-RSpec.describe 'ForgotPassword' do
+RSpec.describe 'ResetPassword' do
   let(:forgot_pass_page) { ForgotPasswordPage.new }
   let(:sign_in_page) { SignInPage.new }
 
