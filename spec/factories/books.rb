@@ -2,12 +2,12 @@ FactoryBot.define do
   factory :book do
     slug { FFaker::Internet.slug }
     publication_year { FFaker::Vehicle.year }
-    material { 'cotton' }
-    width { 10.2 }
-    height { 3 }
-    depth { 15 }
+    material { FFaker::Lorem.word }
+    width { rand(20.0..100.0).round(2) }
+    height { rand(20..30) }
+    depth { rand(20..30) }
     sold { 0 }
-    quantity { 20 }
+    quantity { rand(1..100) }
     description { FFaker::Book.description }
     price { (20..100).to_a.sample }
     title { FFaker::Book.title }
