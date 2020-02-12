@@ -1,9 +1,7 @@
 RSpec.describe 'LogOut' do
   let(:home_page) { HomePage.new }
-
   let(:user) { create(:user) }
-
-  let(:success_message) { 'Signed out successfully.' }
+  let(:success_message) { I18n.t('devise.sessions.signed_out') }
 
   before do
     login_as(user)

@@ -1,7 +1,6 @@
 RSpec.describe 'SignIn' do
   let(:sign_in_page) { SignInPage.new }
   let(:home_page) { HomePage.new }
-
   let(:user) { create(:user) }
 
   let(:params_login_data) do
@@ -11,7 +10,7 @@ RSpec.describe 'SignIn' do
     }
   end
 
-  let(:success_message) { 'Signed in successfully.' }
+  let(:success_message) { I18n.t('devise.sessions.signed_in') }
   let(:error_message) { 'Invalid Email or password.' }
 
   before { sign_in_page.load }

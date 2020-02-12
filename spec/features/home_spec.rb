@@ -2,12 +2,12 @@ RSpec.describe 'Home' do
   let(:home_page) { HomePage.new }
 
   context 'without books' do
-    before { visit '/' }
+    before { home_page.load }
 
     it 'shows no books title' do
-      expect(home_page.filters_title.text).to include('Filters')
-      expect(home_page.catalog_title.text).to include('Catalog')
-      expect(home_page.no_books_title.text).to include('Can`t find books')
+      expect(home_page.filters_title.text).to include(I18n.t('filters.title'))
+      expect(home_page.catalog_title.text).to include(I18n.t('catalog.title'))
+      expect(home_page.no_books_title.text).to include(I18n.t('filters.can_not_find_books'))
     end
 
     it 'shows no books image' do
@@ -30,7 +30,7 @@ RSpec.describe 'Home' do
     let!(:mob_books) { create_list(:book, 7, category: mob) }
     let!(:web_books) { create_list(:book, 6, category: web) }
 
-    before { visit '/' }
+    before { home_page.load }
 
     it 'shows all books' do
       home_page.click_on_view_more_button

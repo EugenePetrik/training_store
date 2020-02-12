@@ -1,7 +1,6 @@
 RSpec.describe 'SignUp' do
   let(:sign_up_page) { SignUpPage.new }
   let(:home_page) { HomePage.new }
-
   let(:email) { FFaker::Internet.email }
   let(:password) { FFaker::Internet.password }
 
@@ -13,7 +12,7 @@ RSpec.describe 'SignUp' do
     }
   end
 
-  let(:success_message) { 'Welcome! You have signed up successfully.' }
+  let(:success_message) { I18n.t('devise.registrations.signed_up') }
   let(:error_email_blank_invalid) { "Email can't be blank and Email is invalid" }
   let(:error_email_invalid) { 'Email is invalid' }
   let(:error_email_taken) { 'Email has already been taken' }

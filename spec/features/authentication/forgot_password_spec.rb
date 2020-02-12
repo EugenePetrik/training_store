@@ -1,11 +1,9 @@
 RSpec.describe 'ResetPassword' do
   let(:forgot_pass_page) { ForgotPasswordPage.new }
   let(:sign_in_page) { SignInPage.new }
-
   let(:user) { create(:user) }
-
-  let(:success_message) { 'You will receive an email with instructions on how to reset your password in a few minutes.' }
-  let(:error_message) { 'Please review the problems below:' }
+  let(:success_message) { I18n.t('devise.passwords.send_instructions') }
+  let(:error_message) { I18n.t('simple_form.error_notification.default_message') }
   let(:error_email_blank) { "Email can't be blank" }
   let(:error_email_not_found) { 'Email not found' }
 
