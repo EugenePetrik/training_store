@@ -59,6 +59,8 @@ end
 group :test do
   # https://github.com/teamcapybara/capybara
   gem 'capybara', '~> 3.30'
+  # https://github.com/DavyJonesLocker/capybara-email
+  gem 'capybara-email', '~> 3.0', '>= 3.0.1'
   # https://github.com/mattheworiordan/capybara-screenshot
   gem 'capybara-screenshot', '~> 1.0', '>= 1.0.24'
   # https://github.com/DatabaseCleaner/database_cleaner

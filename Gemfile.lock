@@ -882,6 +882,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    capybara-email (3.0.1)
+      capybara (>= 2.4, < 4.0)
+      mail
     capybara-screenshot (1.0.24)
       capybara (>= 1.0, < 4)
       launchy
@@ -1498,6 +1501,7 @@ DEPENDENCIES
   brakeman (~> 4.5.1)
   byebug
   capybara (~> 3.30)
+  capybara-email (~> 3.0, >= 3.0.1)
   capybara-screenshot (~> 1.0, >= 1.0.24)
   carrierwave (~> 1.0)
   client_side_validations
