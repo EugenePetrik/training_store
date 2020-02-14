@@ -36,7 +36,6 @@ RSpec.describe 'SignIn' do
   context 'with email in uppercase' do
     it 'user logs in' do
       params_login_data[:email] = user.email.upcase
-
       sign_in_page.login_with(params_login_data)
 
       expect(home_page).to be_displayed
@@ -47,7 +46,6 @@ RSpec.describe 'SignIn' do
   context 'with nonexistent email' do
     it 'raises an error' do
       params_login_data[:email] = "user_#{user.email.upcase}"
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
@@ -58,7 +56,6 @@ RSpec.describe 'SignIn' do
   context 'with invalid email format' do
     it 'raises an error' do
       params_login_data[:email] = 'testexample.com'
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
@@ -69,7 +66,6 @@ RSpec.describe 'SignIn' do
   context 'with empty email' do
     it 'raises an error' do
       params_login_data[:email] = ' '
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
@@ -80,7 +76,6 @@ RSpec.describe 'SignIn' do
   context 'with incorrect password' do
     it 'raises an error' do
       params_login_data[:password] = "pass_#{user.password}"
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
@@ -91,7 +86,6 @@ RSpec.describe 'SignIn' do
   context 'with empty password' do
     it 'raises an error' do
       params_login_data[:password] = ' '
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
@@ -101,9 +95,7 @@ RSpec.describe 'SignIn' do
 
   context 'with empty email and password' do
     it 'raises an error' do
-      params_login_data[:email] = ''
-      params_login_data[:password] = ''
-
+      params_login_data[:email], params_login_data[:password] = ''
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed

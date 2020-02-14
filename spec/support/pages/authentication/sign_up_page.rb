@@ -14,7 +14,6 @@ class SignUpPage < BasePage
   # Errors messages
   element :email_error, '[for="user_email"]+.invalid-feedback'
   element :pass_error, '[for="user_password"]+.invalid-feedback'
-  element :pass_less_6_chars_error, :xpath, '//*[@for="user_password"]/../..//small'
   element :pass_confirm_error, '[for="user_password_confirmation"]+.invalid-feedback'
 
   def sign_up_with(options = {})

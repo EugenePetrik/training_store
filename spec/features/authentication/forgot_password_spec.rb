@@ -16,7 +16,7 @@ RSpec.describe 'ForgotPassword' do
   end
 
   context 'with correct email' do
-    it 'user receives email' do
+    it 'user sees success message' do
       forgot_pass_page.reset_password_with(user.email)
 
       expect(sign_in_page).to be_displayed
@@ -25,7 +25,7 @@ RSpec.describe 'ForgotPassword' do
   end
 
   context 'with email in uppercase' do
-    it 'user receives email' do
+    it 'user sees success message' do
       forgot_pass_page.reset_password_with(user.email.upcase)
 
       expect(sign_in_page).to be_displayed
@@ -34,9 +34,8 @@ RSpec.describe 'ForgotPassword' do
   end
 
   context 'with spaces before email' do
-    it 'user receives email' do
+    it 'user sees success message' do
       email = "   #{user.email.upcase}   "
-
       forgot_pass_page.reset_password_with(email)
 
       expect(sign_in_page).to be_displayed
@@ -67,7 +66,6 @@ RSpec.describe 'ForgotPassword' do
   context 'with nonexistent email' do
     it 'raises an error' do
       email = "user_#{user.email.upcase}"
-
       forgot_pass_page.reset_password_with(email)
 
       expect(forgot_pass_page.current_url).to end_with('/users/password')

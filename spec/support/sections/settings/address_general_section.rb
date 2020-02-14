@@ -1,21 +1,21 @@
 class AddressGeneralSection < SitePrism::Section
-  element :first_name, '[id $= "ing_address_first_name"]'
-  element :last_name, '[id $= "ing_address_last_name"]'
-  element :address, '[id $= "ing_address_address"]'
-  element :city, '[id $= "ing_address_city"]'
-  element :zip, '[id $= "ing_address_zip"]'
-  element :country, '[id $= "ing_address_country"]'
-  element :phone, '[id $= "ing_address_phone"]'
+  element :first_name, '[id$="address_first_name"]'
+  element :last_name, '[id$="address_last_name"]'
+  element :address, '[id$="address_address"]'
+  element :city, '[id$="address_city"]'
+  element :zip, '[id$="address_zip"]'
+  element :country, '[id$="address_country"]'
+  element :phone, '[id$="address_phone"]'
   element :save_button, '[name="commit"]'
 
   # Error messages
-  element :first_name_error, '[id $= "ing_address_first_name"] + .invalid-feedback'
-  element :last_name_error, '[id $= "ing_address_last_name"] + .invalid-feedback'
-  element :address_error, '[id $= "ing_address_address"] + .invalid-feedback'
-  element :city_error, '[id $= "ing_address_city"] + .invalid-feedback'
-  element :zip_error, '[id $= "ing_address_zip"] + .invalid-feedback'
-  element :country_error, '[id $= "ing_address_country"] + .invalid-feedback'
-  element :phone_error, '[id $= "ing_address_phone"] + .invalid-feedback'
+  element :first_name_error, '[id$="address_first_name"] + .invalid-feedback'
+  element :last_name_error, '[id$="address_last_name"] + .invalid-feedback'
+  element :address_error, '[id$="address_address"] + .invalid-feedback'
+  element :city_error, '[id$="address_city"] + .invalid-feedback'
+  element :zip_error, '[id$="address_zip"] + .invalid-feedback'
+  element :country_error, '[id$="address_country"] + .invalid-feedback'
+  element :phone_error, '[id$="address_phone"] + .invalid-feedback'
 
   def fill_in_address_with(options = {})
     fill_in_first_name(options[:first_name])
