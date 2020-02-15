@@ -35,6 +35,12 @@ RSpec.describe 'SignUp' do
       expect(home_page).to be_displayed
       expect(home_page.success_flash.text).to eq(success_message)
     end
+    
+    it 'creates the record in the database' do
+      expect do
+        sign_up_page.sign_up_with(params_signup_data)
+      end.to change(User, :count).by(1)
+    end
   end
 
   context 'with existing email in the system' do
