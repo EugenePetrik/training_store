@@ -77,6 +77,6 @@ group :test do
   gem 'rspec-rails', '~> 3.9'
   # https://github.com/rubocop-hq/rubocop-rspec
   gem 'rubocop-rspec', '~> 1.37'
-  # https://rubygems.org/gems/webdrivers/versions/4.2.0
+  # https://github.com/titusfortner/webdrivers
   gem 'webdrivers', '~> 4.2'
 end
