@@ -1,7 +1,7 @@
 RSpec.describe 'ResetPassword' do
   let(:home_page) { HomePage.new }
   let(:forgot_pass_page) { ForgotPasswordPage.new }
-  let(:reset_pass_page) { ResetPassword.new }
+  let(:reset_pass_page) { ResetPasswordPage.new }
   let(:user) { create(:user) }
   let(:password) { FFaker::Internet.password }
 

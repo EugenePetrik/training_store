@@ -1,4 +1,4 @@
-class ResetPassword < BasePage
+class ResetPasswordPage < BasePage
   set_url_matcher(%r{/users/password/edit\?reset_password_token=\w+})
 
   element :change_pass_title, 'h2.general-login-title'
