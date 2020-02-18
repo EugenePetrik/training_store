@@ -68,6 +68,12 @@ RSpec.describe 'BillingAddress' do
           expect(billing.phone.value).to eq(params_billing_address[:phone])
         end
       end
+
+      it 'creates the record in the database' do
+        expect do
+          settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        end.to change(Address, :count).by(1)
+      end
     end
 
     context 'with empty first name' do

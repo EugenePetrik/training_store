@@ -68,6 +68,12 @@ RSpec.describe 'ShippingAddress' do
           expect(shipping.phone.value).to eq(params_shipping_address[:phone])
         end
       end
+
+      it 'creates the record in the database' do
+        expect do
+          settings_page.shipping_address.fill_in_shipping_address_with(params_shipping_address)
+        end.to change(Address, :count).by(1)
+      end
     end
 
     context 'with empty first name' do
