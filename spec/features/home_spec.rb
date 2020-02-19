@@ -11,8 +11,8 @@ RSpec.describe 'Home' do
     end
 
     it 'shows no books image' do
-      file_src = '/assets/fallback/no_books-0a35a1b14b85c223a9d0c8bf0ea4cd29588f68cb35744963bb6c12d365118919.jpg'
-      expect(home_page.no_books_image_source).to include(file_src)
+      file_src = '/assets/fallback/no_books'
+      expect(home_page.get_image_src_attr(home_page.no_books_image)).to include(file_src)
     end
 
     it 'shows ALL link with 0 count' do

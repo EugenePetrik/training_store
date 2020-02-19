@@ -54,7 +54,7 @@ RSpec.describe 'BillingAddress' do
 
     context 'with correct data' do
       it 'creates billing address' do
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
 
@@ -71,7 +71,7 @@ RSpec.describe 'BillingAddress' do
 
       it 'creates the record in the database' do
         expect do
-          settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+          settings_page.billing_address.fill_in_address_with(params_billing_address)
         end.to change(Address, :count).by(1)
       end
     end
@@ -79,7 +79,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty first name' do
       it 'raises an error' do
         params_billing_address[:first_name] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.first_name_error.text).to eq(error_field_blank)
@@ -89,7 +89,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too long first name' do
       it 'raises an error' do
         params_billing_address[:first_name] = FFaker::Lorem.characters(rand(51..100))
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.first_name_error.text).to eq(error_max_50_chars)
@@ -99,7 +99,7 @@ RSpec.describe 'BillingAddress' do
     context 'with numbers in first name' do
       it 'raises an error' do
         params_billing_address[:first_name] = rand(10_000)
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.first_name_error.text).to eq(error_field_blank)
@@ -109,7 +109,7 @@ RSpec.describe 'BillingAddress' do
     context 'with special characters in first name' do
       it 'raises an error' do
         params_billing_address[:first_name] += special_chars
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.first_name_error.text).to eq(error_field_blank)
@@ -119,7 +119,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty last name' do
       it 'raises an error' do
         params_billing_address[:last_name] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.last_name_error.text).to eq(error_field_blank)
@@ -129,7 +129,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too long last name' do
       it 'raises an error' do
         params_billing_address[:last_name] = FFaker::Lorem.characters(rand(51..100))
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.last_name_error.text).to eq(error_max_50_chars)
@@ -139,7 +139,7 @@ RSpec.describe 'BillingAddress' do
     context 'with numbers in last name' do
       it 'raises an error' do
         params_billing_address[:last_name] = rand(10_000)
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.last_name_error.text).to eq(error_field_blank)
@@ -149,7 +149,7 @@ RSpec.describe 'BillingAddress' do
     context 'with special characters in last name' do
       it 'raises an error' do
         params_billing_address[:last_name] += special_chars
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.last_name_error.text).to eq(error_field_blank)
@@ -159,7 +159,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty address' do
       it 'raises an error' do
         params_billing_address[:address] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.address_error.text).to eq(error_field_blank)
@@ -169,7 +169,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too short address' do
       it 'raises an error' do
         params_billing_address[:address] = FFaker::Lorem.characters(rand(1..4))
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.address_error.text).to eq(error_min_5_chars)
@@ -179,7 +179,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too long address' do
       it 'raises an error' do
         params_billing_address[:address] = FFaker::Lorem.characters(rand(21..50))
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.address_error.text).to eq(error_max_20_chars)
@@ -189,7 +189,7 @@ RSpec.describe 'BillingAddress' do
     context 'with special characters in address' do
       it 'raises an error' do
         params_billing_address[:address] = FFaker::AddressUS.street_suffix + special_chars
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.address_error.text).to eq(error_address_invalid)
@@ -199,7 +199,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty city' do
       it 'raises an error' do
         params_billing_address[:city] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.city_error.text).to eq(error_field_blank)
@@ -209,7 +209,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too long city' do
       it 'raises an error' do
         params_billing_address[:city] = FFaker::Lorem.characters(rand(51..100))
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.city_error.text).to eq(error_max_50_chars)
@@ -219,7 +219,7 @@ RSpec.describe 'BillingAddress' do
     context 'with numbers in city' do
       it 'raises an error' do
         params_billing_address[:city] = rand(10_000)
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.city_error.text).to eq(error_field_blank)
@@ -229,7 +229,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty zip code' do
       it 'raises an error' do
         params_billing_address[:zip] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.zip_error.text).to eq(error_field_blank)
@@ -239,7 +239,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too long zip code' do
       it 'raises an error' do
         params_billing_address[:zip] = rand(1_000_000..100_000_000)
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.zip_error.text).to eq(error_max_5_chars)
@@ -249,7 +249,7 @@ RSpec.describe 'BillingAddress' do
     context 'with characters in zip code' do
       it 'raises an error' do
         params_billing_address[:zip] = FFaker::Lorem.characters(rand(2..5))
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.zip_error.text).to eq(error_zip_invalid)
@@ -259,7 +259,7 @@ RSpec.describe 'BillingAddress' do
     context 'with special characters in zip code' do
       it 'raises an error' do
         params_billing_address[:zip] = special_chars
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.zip_error.text).to eq(error_zip_invalid)
@@ -269,7 +269,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty country' do
       it 'raises an error' do
         params_billing_address[:country] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.country_error.text).to eq(error_field_blank)
@@ -279,7 +279,7 @@ RSpec.describe 'BillingAddress' do
     context 'with empty phone number' do
       it 'raises an error' do
         params_billing_address[:phone] = ''
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.phone_error.text).to eq(error_field_blank)
@@ -289,7 +289,7 @@ RSpec.describe 'BillingAddress' do
     context 'with too long phone number' do
       it 'raises an error' do
         params_billing_address[:phone] += rand(1000).to_s
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.phone_error.text).to eq(error_max_13_chars)
@@ -299,7 +299,7 @@ RSpec.describe 'BillingAddress' do
     context 'with characters in phone number' do
       it 'raises an error' do
         params_billing_address[:phone] += special_chars
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.phone_error.text).to eq(error_max_13_chars)
@@ -309,7 +309,7 @@ RSpec.describe 'BillingAddress' do
     context 'with invalid phone number format' do
       it 'raises an error' do
         params_billing_address[:phone] = rand(100_000_000)
-        settings_page.billing_address.fill_in_billing_address_with(params_billing_address)
+        settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed
         expect(settings_page.billing_address.phone_error.text).to eq(error_phone_invalid)

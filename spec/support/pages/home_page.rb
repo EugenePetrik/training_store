@@ -23,10 +23,6 @@ class HomePage < BasePage
 
   sections :books, ::BookSection, 'div.book_section'
 
-  def no_books_image_source
-    no_books_image[:src]
-  end
-
   def get_category_name_and_count_by_index(index)
     within(:xpath, "(//ul/li[contains(@class, 'category_info')])[#{index}]") do
       block_given? ? yield : raise('There are no parameters for spec')
