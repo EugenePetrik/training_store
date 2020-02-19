@@ -1,7 +1,6 @@
 RSpec.describe 'SignIn' do
   let(:sign_in_page) { SignInPage.new }
   let(:home_page) { HomePage.new }
-
   let(:user) { create(:user) }
 
   let(:params_login_data) do
@@ -11,7 +10,7 @@ RSpec.describe 'SignIn' do
     }
   end
 
-  let(:success_message) { 'Signed in successfully.' }
+  let(:success_message) { I18n.t('devise.sessions.signed_in') }
   let(:error_message) { 'Invalid Email or password.' }
 
   before { sign_in_page.load }
@@ -27,8 +26,8 @@ RSpec.describe 'SignIn' do
       sign_in_page.login_with(params_login_data)
 
       expect(home_page).to be_displayed
-      expect(home_page.success_flash_text).to eq(success_message)
-      expect(home_page.user_email_text).to eq(user.email)
+      expect(home_page.success_flash.text).to eq(success_message)
+      expect(home_page.user_email.text).to eq(user.email)
       expect(home_page).to have_no_sign_up_link
       expect(home_page).to have_no_login_link
     end
@@ -37,78 +36,70 @@ RSpec.describe 'SignIn' do
   context 'with email in uppercase' do
     it 'user logs in' do
       params_login_data[:email] = user.email.upcase
-
       sign_in_page.login_with(params_login_data)
 
       expect(home_page).to be_displayed
-      expect(home_page.success_flash_text).to eq(success_message)
+      expect(home_page.success_flash.text).to eq(success_message)
     end
   end
 
   context 'with nonexistent email' do
     it 'raises an error' do
       params_login_data[:email] = "user_#{user.email.upcase}"
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
   context 'with invalid email format' do
     it 'raises an error' do
       params_login_data[:email] = 'testexample.com'
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
   context 'with empty email' do
     it 'raises an error' do
       params_login_data[:email] = ' '
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
   context 'with incorrect password' do
     it 'raises an error' do
       params_login_data[:password] = "pass_#{user.password}"
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
   context 'with empty password' do
     it 'raises an error' do
       params_login_data[:password] = ' '
-
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 
   context 'with empty email and password' do
     it 'raises an error' do
-      params_login_data[:email] = ''
-      params_login_data[:password] = ''
-
+      params_login_data[:email], params_login_data[:password] = ''
       sign_in_page.login_with(params_login_data)
 
       expect(sign_in_page).to be_displayed
-      expect(sign_in_page.error_flash_text).to eq(error_message)
+      expect(sign_in_page.error_flash.text).to eq(error_message)
     end
   end
 end

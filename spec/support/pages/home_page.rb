@@ -1,3 +1,5 @@
+require_relative '../sections/book_section'
+
 class HomePage < BasePage
   set_url '/'
 
@@ -19,24 +21,11 @@ class HomePage < BasePage
 
   element :view_more_button, '#view_more'
 
-  elements :book_title, 'div p.title'
-
-  delegate :text, to: :user_email, prefix: true
-  delegate :text, to: :filters_title, prefix: true
-  delegate :text, to: :catalog_title, prefix: true
-  delegate :text, to: :no_books_title, prefix: true
-  delegate :text, to: :category_name, prefix: true
-  delegate :text, to: :category_count, prefix: true
-
-  delegate :size, to: :book_title, prefix: true
-
-  def no_books_image_source
-    no_books_image[:src]
-  end
+  sections :books, ::BookSection, 'div.book_section'
 
   def get_category_name_and_count_by_index(index)
     within(:xpath, "(//ul/li[contains(@class, 'category_info')])[#{index}]") do
-      yield
+      block_given? ? yield : raise('There are no parameters for spec')
     end
   end
 
@@ -44,8 +33,8 @@ class HomePage < BasePage
     view_more_button.click
   end
 
-  def books_titles
-    book_title.map(&:text)
+  def book_titles
+    books.map(&:title).map(&:text)
   end
 
   def user_log_out

@@ -59,6 +59,8 @@ end
 group :test do
   # https://github.com/teamcapybara/capybara
   gem 'capybara', '~> 3.30'
+  # https://github.com/DavyJonesLocker/capybara-email
+  gem 'capybara-email', '~> 3.0', '>= 3.0.1'
   # https://github.com/mattheworiordan/capybara-screenshot
   gem 'capybara-screenshot', '~> 1.0', '>= 1.0.24'
   # https://github.com/DatabaseCleaner/database_cleaner
@@ -75,6 +77,6 @@ group :test do
   gem 'rspec-rails', '~> 3.9'
   # https://github.com/rubocop-hq/rubocop-rspec
   gem 'rubocop-rspec', '~> 1.37'
-  # https://rubygems.org/gems/webdrivers/versions/4.2.0
+  # https://github.com/titusfortner/webdrivers
   gem 'webdrivers', '~> 4.2'
 end
