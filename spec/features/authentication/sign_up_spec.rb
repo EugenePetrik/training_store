@@ -48,7 +48,6 @@ RSpec.describe 'SignUp' do
 
     it 'raises an error' do
       params_signup_data[:email] = user.email
-      params_signup_data[:password], params_signup_data[:password_confirmation] = user.password
       sign_up_page.sign_up_with(params_signup_data)
 
       expect(sign_up_page.current_url).to end_with('/users')
