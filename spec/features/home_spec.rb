@@ -1,6 +1,14 @@
 RSpec.describe 'Home' do
   let(:home_page) { HomePage.new }
 
+  context 'when open page' do
+    before { home_page.load }
+    
+    it { expect(home_page).to be_displayed }
+    it { expect(home_page).to be_all_there }
+    it { expect(home_page.title).to eq('Bookstore') }
+  end
+  
   context 'without books' do
     before { home_page.load }
 

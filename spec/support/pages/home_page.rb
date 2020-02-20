@@ -21,6 +21,8 @@ class HomePage < BasePage
 
   element :view_more_button, '#view_more'
 
+  expected_elements :sign_up_link, :login_link, :filters_title, :catalog_title
+
   sections :books, ::BookSection, 'div.book_section'
 
   def get_category_name_and_count_by_index(index)
