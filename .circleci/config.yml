@@ -2,7 +2,7 @@ version: 2.1
 
 executors:
   default:
-    working_directory: ~/training_store
+    working_directory: ~/book_store
     docker:
       - image: circleci/ruby:2.6.5-node-browsers
         environment:
@@ -39,7 +39,7 @@ commands:
       - save_cache:
           key: *full_gem_cache
           paths:
-            - ~/univ_training_storeapp/vendor/bundle
+            - ~/book_store/vendor/bundle
 
   setup_databases:
     steps:
@@ -74,16 +74,16 @@ commands:
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
-          path: ~/univ_app/coverage
+          path: ~/book_store/coverage
           destination: coverage
       - store_artifacts:
-          path: ~/univ_app/reports
+          path: ~/book_store/reports
           destination: rspec_reports
       - store_artifacts:
-          path: ~/univ_app/tmp/capybara
+          path: ~/book_store/tmp/capybara
           destination: capybara_screenshot
       - store_artifacts:
-          path: ~/univ_app/tmp/logs
+          path: ~/book_store/tmp/logs
           destination: logs
 
 jobs:
