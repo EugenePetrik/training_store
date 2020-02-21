@@ -39,6 +39,7 @@ RSpec.describe 'SignUp' do
     it 'creates the record in the database' do
       expect do
         sign_up_page.sign_up_with(params_signup_data)
+        sign_up_page.has_success_flash?
       end.to change(User, :count).by(1)
     end
   end

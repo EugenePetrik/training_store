@@ -67,7 +67,6 @@ commands:
             bundle exec rspec --profile \
                               --order random \
                               --format documentation \
-                              --fail-fast \
                               --format html \
                               --out reports/rspec_results.html \
                               -- \
