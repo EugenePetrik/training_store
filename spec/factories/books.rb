@@ -13,4 +13,10 @@ FactoryBot.define do
     title { FFaker::Book.title }
     association(:category)
   end
+
+  trait :with_author do
+    after(:create) do |book|
+      book.authors << create(:author)
+    end
+  end
 end
