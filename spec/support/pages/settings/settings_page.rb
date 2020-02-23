@@ -1,5 +1,5 @@
-require_relative '../../sections/settings/billing_section'
-require_relative '../../sections/settings/shipping_section'
+require_relative '../../sections/settings/address/billing_section'
+require_relative '../../sections/settings/address/shipping_section'
 
 class SettingsPage < BasePage
   set_url '/settings'

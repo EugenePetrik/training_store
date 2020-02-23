@@ -8,5 +8,7 @@ class OrderPage < BasePage
   element :coupon_title, 'p.cart-coupon'
   element :order_total_title, 'strong.cart-order-total'
 
+  element :checkout_button, 'a.btn-default'
+
   elements :number_ordered_books, 'tr.books-order'
 end
