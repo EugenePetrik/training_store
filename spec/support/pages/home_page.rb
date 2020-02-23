@@ -21,6 +21,8 @@ class HomePage < BasePage
 
   element :view_more_button, '#view_more'
 
+  element :shop_quantity, 'a.hidden-xs span.shop-quantity'
+
   expected_elements :sign_up_link, :login_link, :filters_title, :catalog_title
 
   sections :books, ::BookSection, 'div.book_section'
@@ -42,5 +44,19 @@ class HomePage < BasePage
   def user_log_out
     user_email.hover
     log_out.click
+  end
+
+  def add_to_shop_book_with(name)
+    within(:xpath, "//p[normalize-space()='#{name}']/../../div[1]") do
+      find(:xpath, './/img[@alt="design-book"]').hover
+      find(:xpath, './/a[contains(@class, "by_book_link")]').click
+    end
+  end
+
+  def open_book_details_with(name)
+    within(:xpath, "//p[normalize-space()='#{name}']/../../div[1]") do
+      find(:xpath, './/img[@alt = "design-book"]').hover
+      find(:xpath, './/a[@class = "thumb-hover-link"]').click
+    end
   end
 end
