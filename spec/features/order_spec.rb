@@ -7,7 +7,7 @@ RSpec.describe 'Order' do
     order_page.load
   end
 
-  context 'when open page' do   
+  context 'when open page' do
     it { expect(order_page.title).to eq('Bookstore') }
     it { expect(order_page).to be_displayed }
     it { expect(order_page).to be_all_there }

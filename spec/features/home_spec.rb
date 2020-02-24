@@ -3,12 +3,12 @@ RSpec.describe 'Home' do
 
   context 'when open page' do
     before { home_page.load }
-    
+
     it { expect(home_page).to be_displayed }
     it { expect(home_page).to be_all_there }
     it { expect(home_page.title).to eq('Bookstore') }
   end
-  
+
   context 'without books' do
     before { home_page.load }
 
@@ -80,41 +80,42 @@ RSpec.describe 'Home' do
     end
   end
 
-  context 'when click on' do
+  context 'when click on add to shop button' do
     let!(:book) { create(:book, :with_author) }
-  
+
     before { home_page.load }
 
-    context 'add to shop button' do
-      it 'increases shop quantity' do
-        home_page.add_to_shop_book_with(book.title)
+    it 'increases shop quantity' do
+      home_page.add_to_shop_book_with(book.title)
 
-        expect(home_page.shop_quantity.text).to include('1')
-      end
+      expect(home_page.shop_quantity.text).to include('1')
     end
-  
-    context 'book details button' do
-      let(:book_details_page) { BookDetailsPage.new }
+  end
 
-      it 'opens book details page' do
-        home_page.open_book_details_with(book.title)
+  context 'when click on book details button' do
+    let(:book_details_page) { BookDetailsPage.new }
+    let!(:book) { create(:book, :with_author) }
 
-        expect(book_details_page).to be_displayed(book_slug: book.slug)
-        expect(book_details_page).to be_all_there
+    before { home_page.load }
 
-        book_author = "#{Author.last.first_name} #{Author.last.last_name}"
-        book_price = "€ #{book.price}"
-        book_description = "#{book.description[0, 100]}..."
-        book_dimensions = "H:#{book.height}\" x W: #{book.width}\" x D: #{book.depth}"
+    it 'opens book details page' do
+      home_page.open_book_details_with(book.title)
 
-        expect(book_details_page.book_title.text).to eq(book.title)
-        expect(book_details_page.book_author_title.text).to include(book_author)
-        expect(book_details_page.book_price_title.text).to include(book_price)
-        expect(book_details_page.book_short_desc_field.text).to include(book_description)
-        expect(book_details_page.book_year_field.text).to include('1970-01-01')
-        expect(book_details_page.book_dimensions_field.text).to include(book_dimensions)
-        expect(book_details_page.book_material_field.text).to include(book.material)
-      end
+      expect(book_details_page).to be_displayed(book_slug: book.slug)
+      expect(book_details_page).to be_all_there
+
+      book_author = "#{Author.last.first_name} #{Author.last.last_name}"
+      book_price = "€ #{book.price}"
+      book_description = "#{book.description[0, 100]}..."
+      book_dimensions = "H:#{book.height}\" x W: #{book.width}\" x D: #{book.depth}"
+
+      expect(book_details_page.book_title.text).to eq(book.title)
+      expect(book_details_page.book_author_title.text).to include(book_author)
+      expect(book_details_page.book_price_title.text).to include(book_price)
+      expect(book_details_page.book_short_desc_field.text).to include(book_description)
+      expect(book_details_page.book_year_field.text).to include('1970-01-01')
+      expect(book_details_page.book_dimensions_field.text).to include(book_dimensions)
+      expect(book_details_page.book_material_field.text).to include(book.material)
     end
   end
 end

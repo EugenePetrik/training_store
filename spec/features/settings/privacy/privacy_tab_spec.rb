@@ -14,7 +14,7 @@ RSpec.describe 'PrivacyTab' do
 
       it 'updates email' do
         settings_page.update_email.update_email_with(user_email)
-        
+
         expect(settings_page.success_flash.text).to eq(I18n.t('settings.updated_email'))
 
         settings_page.privacy_tab.click
@@ -26,7 +26,7 @@ RSpec.describe 'PrivacyTab' do
     context 'with empty email' do
       it 'raises an error' do
         settings_page.update_email.update_email_with('')
-                
+
         expect(settings_page.success_flash.text).to eq(I18n.t('settings.mistake_update_email'))
 
         settings_page.privacy_tab.click
@@ -38,7 +38,7 @@ RSpec.describe 'PrivacyTab' do
     context 'with invalid email format' do
       it 'raises an error' do
         settings_page.update_email.update_email_with('testexample.com')
-  
+
         expect(settings_page.success_flash.text).to eq(I18n.t('settings.mistake_update_email'))
 
         settings_page.privacy_tab.click
@@ -63,7 +63,7 @@ RSpec.describe 'PrivacyTab' do
           settings_page.remove_account.checkbox_delete_account.click
         end
         settings_page.remove_account.delete_account_button.click
-      end.to change(User, :count).by(0)      
+      end.to change(User, :count).by(0)
     end
   end
 
@@ -91,12 +91,12 @@ RSpec.describe 'PrivacyTab' do
     context 'with correct data' do
       it 'signs in with new password' do
         settings_page.update_password.update_password_with(params_update_password)
-        
+
         expect(sign_in_page).to be_displayed
         expect(sign_in_page.error_flash.text).to eq(I18n.t('devise.failure.unauthenticated'))
-        
+
         sign_in_page.login_with(params_login_data)
-        
+
         expect(home_page).to be_displayed
         expect(home_page.success_flash.text).to eq(I18n.t('devise.sessions.signed_in'))
         expect(home_page.user_email.text).to eq(user.email)
@@ -136,7 +136,7 @@ RSpec.describe 'PrivacyTab' do
       it 'raises an error' do
         params_update_password[:new_pass], params_update_password[:confirm_pass] = rand(100_000)
         settings_page.update_password.update_password_with(params_update_password)
-  
+
         expect(settings_page.success_flash.text).to eq(I18n.t('settings.mistake_update_password'))
       end
     end
@@ -146,7 +146,7 @@ RSpec.describe 'PrivacyTab' do
         params_update_password[:new_pass] = "   #{password}   "
         params_update_password[:confirm_pass] = password
         settings_page.update_password.update_password_with(params_update_password)
-  
+
         expect(settings_page.success_flash.text).to eq(I18n.t('settings.mistake_update_password'))
       end
     end

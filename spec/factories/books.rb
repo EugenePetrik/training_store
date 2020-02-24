@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :book do
-    slug { FFaker::Internet.slug.gsub('.', '-') }
+    slug { FFaker::Internet.slug.tr('.', '-') }
     publication_year { FFaker::Vehicle.year }
     material { FFaker::Lorem.word }
     width { rand(20.0..100.0).round(2) }
