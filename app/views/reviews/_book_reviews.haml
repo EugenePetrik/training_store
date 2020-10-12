@@ -1,6 +1,6 @@
 = render 'reviews/form_review' if user_signed_in?
 .mb-80
-  %h3.in-gold-500.mb-25
+  %h3.in-gold-500.mb-25.reviews_title
     = t(:'review.reviews_title', amount: book.reviews.count)
   - book.all_reviews.each do |review|
     - if review.approved?

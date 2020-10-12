@@ -9,7 +9,7 @@
 .col-sm-6
   %h1.mt-res-0
     = book.title
-  %p.lead.small
+  %p.lead.small.book-author
     = book.authors_all
   .row
     = form_with url: order_items_path, method: :post do |form|
@@ -26,8 +26,8 @@
             %i.fa.fa-plus.line-height-40
       .col-xs-7.col-md-5.pull-right
         = form.submit I18n.t('book.add_to_card'), class: "btn btn-default pull-right general-position"
-  .general-info-wrap.divider-lg
-    %p
+  .general-info-wrap.divider-lg.description
+    %p.description-title
       = t(:'book.description_title')
     %p
       %span.lead.small.line-height-2#short-desc
@@ -36,21 +36,21 @@
         = book.description
       %span.in-gold-500.mg-0.p-0#read-more
         =t(:'book.read_more')
-  .general-info-wrap.divider-lg
+  .general-info-wrap.divider-lg.year
     .clearfix
-      %p.pull-left
+      %p.pull-left.year-title
         = t(:'book.release')
       %p.lead.small.pull-right
         = Time.at(book.publication_year).to_date
-  .general-info-wrap.divider-lg
+  .general-info-wrap.divider-lg.dimensions
     .clearfix
-      %p.pull-left
+      %p.pull-left.dimensions-title
         = t(:'book.dimensions')
       %p.lead.small.pull-right
         =t(:'book.params', depth: book.depth, height: book.height, width: book.width)
-  .general-info-wrap.divider-lg
+  .general-info-wrap.divider-lg.material
     .clearfix
-      %p.pull-left
+      %p.pull-left.material-title
         = t(:'book.material_title')
       %p.lead.small.pull-right
         = t(:'book.materials', material: book.material)

@@ -35,10 +35,11 @@ RSpec.describe 'SignUp' do
       expect(home_page).to be_displayed
       expect(home_page.success_flash.text).to eq(success_message)
     end
-    
+
     it 'creates the record in the database' do
       expect do
         sign_up_page.sign_up_with(params_signup_data)
+        sign_up_page.has_success_flash?
       end.to change(User, :count).by(1)
     end
   end
@@ -48,7 +49,6 @@ RSpec.describe 'SignUp' do
 
     it 'raises an error' do
       params_signup_data[:email] = user.email
-      params_signup_data[:password], params_signup_data[:password_confirmation] = user.password
       sign_up_page.sign_up_with(params_signup_data)
 
       expect(sign_up_page.current_url).to end_with('/users')

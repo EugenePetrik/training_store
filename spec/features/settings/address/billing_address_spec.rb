@@ -248,7 +248,7 @@ RSpec.describe 'BillingAddress' do
 
     context 'with characters in zip code' do
       it 'raises an error' do
-        params_billing_address[:zip] = FFaker::Lorem.characters(rand(2..5))
+        params_billing_address[:zip] = ('a'..'z').to_a.sample(rand(1..5)).join
         settings_page.billing_address.fill_in_address_with(params_billing_address)
 
         expect(settings_page).to be_displayed

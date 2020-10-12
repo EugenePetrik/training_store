@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/EugenePetrik/training_store/tree/master.svg?style=svg)](https://circleci.com/gh/EugenePetrik/training_store/tree/master)
+
 ## Training Store
 
 #### Create an empty database for the current environment:

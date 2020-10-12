@@ -248,7 +248,7 @@ RSpec.describe 'ShippingAddress' do
 
     context 'with characters in zip code' do
       it 'raises an error' do
-        params_shipping_address[:zip] = FFaker::Lorem.characters(rand(2..5))
+        params_shipping_address[:zip] = ('a'..'z').to_a.sample(rand(1..5)).join
         settings_page.shipping_address.fill_in_address_with(params_shipping_address)
 
         expect(settings_page).to be_displayed
